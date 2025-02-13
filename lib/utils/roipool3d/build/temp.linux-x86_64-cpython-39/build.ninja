@@ -1,0 +1,29 @@
+ninja_required_version = 1.3
+cxx = c++
+nvcc = /usr/local/cuda-11.8/bin/nvcc
+
+cflags = -pthread -B /home/easyai/anaconda3/envs/torch1120-py39-cuda112/compiler_compat -Wl,--sysroot=/ -Wno-unused-result -Wsign-compare -DNDEBUG -O2 -Wall -fPIC -O2 -isystem /home/easyai/anaconda3/envs/torch1120-py39-cuda112/include -fPIC -O2 -isystem /home/easyai/anaconda3/envs/torch1120-py39-cuda112/include -fPIC -I/home/easyai/anaconda3/envs/torch1120-py39-cuda112/lib/python3.9/site-packages/torch/include -I/home/easyai/anaconda3/envs/torch1120-py39-cuda112/lib/python3.9/site-packages/torch/include/torch/csrc/api/include -I/home/easyai/anaconda3/envs/torch1120-py39-cuda112/lib/python3.9/site-packages/torch/include/TH -I/home/easyai/anaconda3/envs/torch1120-py39-cuda112/lib/python3.9/site-packages/torch/include/THC -I/usr/local/cuda-11.8/include -I/home/easyai/anaconda3/envs/torch1120-py39-cuda112/include/python3.9 -c
+post_cflags = -g -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1013"' -DTORCH_EXTENSION_NAME=roipool3d_cuda -D_GLIBCXX_USE_CXX11_ABI=0 -std=c++14
+cuda_cflags = -I/home/easyai/anaconda3/envs/torch1120-py39-cuda112/lib/python3.9/site-packages/torch/include -I/home/easyai/anaconda3/envs/torch1120-py39-cuda112/lib/python3.9/site-packages/torch/include/torch/csrc/api/include -I/home/easyai/anaconda3/envs/torch1120-py39-cuda112/lib/python3.9/site-packages/torch/include/TH -I/home/easyai/anaconda3/envs/torch1120-py39-cuda112/lib/python3.9/site-packages/torch/include/THC -I/usr/local/cuda-11.8/include -I/home/easyai/anaconda3/envs/torch1120-py39-cuda112/include/python3.9 -c
+cuda_post_cflags = -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr --compiler-options ''"'"'-fPIC'"'"'' -O2 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1013"' -DTORCH_EXTENSION_NAME=roipool3d_cuda -D_GLIBCXX_USE_CXX11_ABI=0 -gencode=arch=compute_86,code=compute_86 -gencode=arch=compute_86,code=sm_86 -std=c++14
+ldflags = 
+
+rule compile
+  command = $cxx -MMD -MF $out.d $cflags -c $in -o $out $post_cflags
+  depfile = $out.d
+  deps = gcc
+
+rule cuda_compile
+  depfile = $out.d
+  deps = gcc
+  command = $nvcc  $cuda_cflags -c $in -o $out $cuda_post_cflags
+
+
+
+build /home/easyai/EPNetV2-main/lib/utils/roipool3d/build/temp.linux-x86_64-cpython-39/src/roipool3d.o: compile /home/easyai/EPNetV2-main/lib/utils/roipool3d/src/roipool3d.cpp
+build /home/easyai/EPNetV2-main/lib/utils/roipool3d/build/temp.linux-x86_64-cpython-39/src/roipool3d_kernel.o: cuda_compile /home/easyai/EPNetV2-main/lib/utils/roipool3d/src/roipool3d_kernel.cu
+
+
+
+
+
