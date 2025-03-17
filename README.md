@@ -82,6 +82,7 @@ The article "Bidirectional Enhancement and Robust Fusion for 3D Object Detection
   publisher={Springer}
 }
 ```
+```
 @article{liu2022epnet++,
   title={EPNet++: Cascade bi-directional fusion for multi-modal 3D object detection},
   author={Liu, Zhe and Huang, Tengteng and Li, Bingling and Chen, Xiwu and Wang, Xi and Bai, Xiang},
