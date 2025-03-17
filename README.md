@@ -72,6 +72,7 @@ Thanks for the superior open-source project [EPNet++](https://github.com/happine
 
 ## Citation
 If you find this work useful in your research, please consider cite:
+The article "Bidirectional Enhancement and Robust Fusion for 3D Object Detection under Complex Lighting Conditions" is expected to be published in The Visual Computer.
 ```
 @article{liu2022epnet++,
   title={EPNet++: Cascade bi-directional fusion for multi-modal 3D object detection},
