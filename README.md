@@ -25,7 +25,7 @@ The Environment：
 
 a. Clone the RFBE repository.
 ```shell
-git clone https://github.com/happinesslz/EPNetV2.git
+git clone https://github.com/Num2025/RFBE.git
 ```
 
 b. Create conda environment.
