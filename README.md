@@ -1,6 +1,6 @@
 # RFBE
 
-Bidirectional Enhancement and Robust Fusion for 3D Object Detection under Complex Lighting Conditions (The Visual Computer).
+# Bidirectional Enhancement and Robust Fusion for 3D Object Detection under Complex Lighting Conditions (The Visual Computer).
 
 The code is based on [EPNet++](https://github.com/happinesslz/EPNetV2) and [PointRCNN](https://github.com/sshaoshuai/PointRCNN).
 
